@@ -1,4 +1,4 @@
-//Searchable neighhborhoods in Atlanta with Wikipedia information
+//Searchable locations in EAV
 var atlantaLocations = [{
     "name": "Midtown",
     "lat": 33.786801,
@@ -50,41 +50,33 @@ var atlantaLocations = [{
     "lat": 33.749722,
     "lng": -84.366389,
     "wikiPageName": "Cabbagetown,_Atlanta"
-}]
+}];
 
 //Wikipedia API and Error Handling
 function loadData(location) {
 //Code Example followed from Intro to Ajax "Error Handling with JSON P: "Whttps://classroom.udacity.com/nanodegrees/nd001/parts/00113454014/modules/271165859175460/lessons/3310298553/concepts/31621285920923#
-    var wikiRequestTimeOut = setTimeout(function() {
-        $wikiElem.text("Oops, something went wrong. Try again.");
-    }, 8000);
-
-    var wikiUrl = "https://en.wikipedia.org/w/api.php?action=opensearch&search=" + location.wikiPageName + "&format=json&callback=wikiCallback;"
+    var wikiUrl = "https://en.wikipedia.org/w/api.php?action=opensearch&search=" + location.wikiPageName + "&format=json&callback=wikiCallback;";
 
     $.ajax({
         url: wikiUrl,
-        dataType: "jsonp",
-        success: function(response) {
+        dataType: "jsonp"
+    }).done(function(response) {
             var articleList = response[1];
             var url = "http://en.wikipedia.org/wiki/" + articleList[0];
-            location.url = url
-            location.extract = response[2]
-            //Clear TimeOut so data loads, if no error
-            clearTimeout(wikiRequestTimeOut);
-        }
+            location.url = url;
+            location.extract = response[2];
+    }).fail(function(jqXHR, textStatus, errorThrown) {
+            alert("Wikipedia could not load");
     });
-};
-
-
-// Google MapsAPI 
+}
+//Google MapsAPI 
 var map;
-
 //Set TimeOut
 var googleMapsTimeout = setTimeout(function() {
     if (!window.google || !window.google.maps) {
         $('p').append("Oops, something went wrong. Try again.");
     }
-}, 8000);
+}, 2000);
 
 function initMap() {
 
@@ -115,7 +107,7 @@ var LocationViewModel = function() {
     self.locations = ko.observableArray(atlantaLocations);
 
     self.locations().forEach(function(location) {
-        loadData(location)
+        loadData(location);
     });
 
     var largeInfoWindow = new google.maps.InfoWindow();
@@ -130,7 +122,6 @@ var LocationViewModel = function() {
             },
             title: location.name,
             animation: google.maps.Animation.DROP
-
         });
         location.marker = marker;
 
@@ -150,36 +141,33 @@ var LocationViewModel = function() {
             infowindow.marker = marker;
             infowindow.setContent("<div><b><a target='_blank' href='" + location.url + "'>" + marker.title + "</a></b></div>" + "<div>" + location.extract[0] + "<hr>" + "Information provided by Wikipedia" + "</div>");
             infowindow.open(map, marker);
-
+            //
+            setTimeout(function () { infowindow.close(); }, 5000);
         }
     };
 
     self.wikiInfo = function(location) {
-        self.wikiInfoWindow(location.marker, largeInfoWindow, location)
+        self.wikiInfoWindow(location.marker, largeInfoWindow, location);
         location.marker.setAnimation(google.maps.Animation.BOUNCE);
         setTimeout(function() {
             location.marker.setAnimation(null);
         }, 750);
     };
 
-
-
     // Search and Filter Function
-    self.filteredLocation = ko.observable("")
+    self.filteredLocation = ko.observable("");
 
     self.userInput = ko.computed(function() {
         var filter = self.filteredLocation().toLowerCase();
         return ko.utils.arrayFilter(self.locations(), function(location) {
 
             if (location.name.toLowerCase().indexOf(filter) !== -1) {
-                location.marker.setVisible(true)
-                return true
+                location.marker.setVisible(true);
+                return true;
             } else {
-                location.marker.setVisible(false)
+                location.marker.setVisible(false);
                 return false
             };
         });
     });
-
-
 };

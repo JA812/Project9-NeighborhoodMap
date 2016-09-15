@@ -20,17 +20,14 @@ h2 {
     width: 100%;
     margin: 0;
 }
-
 .map {
     height: 100%;
 }
-
 .map-container {
     height: 800px;
     max-width: 100%;
     position: relative;
     z-index: 0
-  
 }
 .left-box {
     height: 800px;

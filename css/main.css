@@ -1,0 +1,47 @@
+body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+h1 {
+    font-family: 'Shadows Into Light', cursive;
+    font-size: 42px;
+    text-align: center;
+    margin-top: -2px;
+    margin-bottom: -2px;
+    position: relative;
+    z-index: 1;
+}
+h2 {
+    font-family: 'Raleway', sans-serif;
+    text-align: center;
+}
+.container {
+    width: 100%;
+    margin: 0;
+}
+
+.map {
+    height: 100%;
+}
+
+.map-container {
+    height: 800px;
+    max-width: 100%;
+    position: relative;
+    z-index: 0
+  
+}
+.left-box {
+    height: 800px;
+    background-color: #d1e0e0;
+    z-index: 1
+}
+p {
+    font-family: 'Raleway', sans-serif;
+    align-self: center;
+}
+ul {
+    font-family: 'Raleway', sans-serif;
+    color: #5d8989;
+}

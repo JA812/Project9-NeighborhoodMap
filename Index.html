@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+      <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+      <link rel="stylesheet" href="css/bootstrap-min.css">
+      <link rel="stylesheet" href="css/main.css">
+      <link href="https://fonts.googleapis.com/css?family=Raleway|Shadows+Into+Light" rel="stylesheet">
+      <title>East Atlanta Village Spots</title>
+   </head>
+   <body>
+      <div class="container-fluid">
+      <div class="row">
+         <div class="col-md-3 left-box">
+            <h1>Neighborhood Map</h1>
+            <h2>Atlanta Neighborhoods</h2>
+            <p>
+               <input data-bind="textInput: filteredLocation" placeholder="Search Locations"/>
+            </p>
+            <ul data-bind= "foreach: userInput" class="list-group">
+               <li data-bind="text: name, click: $parent.wikiInfo" class="list-group-item"></li>
+            </ul>
+         </div>
+         <div class="map-container">
+            <div id="map" class="map col-md-9"></div>
+         </div>
+      </div>
+      <script type="text/javascript" src="js/main.js"></script>
+      <script type="text/javascript" src="js/knockout.js"></script>
+      <script type="text/javascript" src="js/jquery.js"></script>
+      <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBYYol8sCe2o1cOyVsSSzN6nvGfWlQBwbI&libraries=geometry&v=3&callback=initMap"></script>
+   </body>
+</html>

@@ -1,4 +1,4 @@
-//Searchable locations in EAV
+//Searchable neighhborhoods in Atlanta with Wikipedia information
 var atlantaLocations = [{
     "name": "Midtown",
     "lat": 33.786801,

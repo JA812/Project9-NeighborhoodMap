@@ -1,7 +1,16 @@
+html {
+    height: 100%;
+    width: 100%;
+}
 body {
     height: 100%;
+    width: 100%;
     margin: 0;
     padding: 0;
+}
+main {
+    height: 100%;
+    width: 100%;
 }
 h1 {
     font-family: 'Shadows Into Light', cursive;
@@ -30,9 +39,8 @@ h2 {
     z-index: 0
 }
 .left-box {
-    height: 800px;
     background-color: #d1e0e0;
-    z-index: 1
+    z-index: 2
 }
 p {
     font-family: 'Raleway', sans-serif;
@@ -42,3 +50,4 @@ ul {
     font-family: 'Raleway', sans-serif;
     color: #5d8989;
 }
+

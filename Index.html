@@ -7,7 +7,7 @@
       <link rel="stylesheet" href="css/bootstrap-min.css">
       <link rel="stylesheet" href="css/main.css">
       <link href="https://fonts.googleapis.com/css?family=Raleway|Shadows+Into+Light" rel="stylesheet">
-      <title>East Atlanta Village Spots</title>
+      <title>Atlanta Neighborhoods</title>
    </head>
    <body>
       <div class="container-fluid">
@@ -18,9 +18,11 @@
             <p>
                <input data-bind="textInput: filteredLocation" placeholder="Search Locations"/>
             </p>
+            <nav class="nav-collapse">
             <ul data-bind= "foreach: userInput" class="list-group">
                <li data-bind="text: name, click: $parent.wikiInfo" class="list-group-item"></li>
             </ul>
+            </nav>
          </div>
          <div class="map-container">
             <div id="map" class="map col-md-9"></div>

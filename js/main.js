@@ -95,9 +95,16 @@ function initMap() {
             lng: -84.394521
         },
         zoom: 12,
-        styles: styles
+        styles: styles,
     });
 
+    var isDraggable = $(document).width() > 480 ? true : false;
+    var mapOptions = { 
+        draggable: isDraggable, 
+        scrollwheel: false, 
+        panControl: true 
+    }; 
+    
     //Run ViewModel
     ko.applyBindings(new LocationViewModel());
   

@@ -1,4 +1,4 @@
-//Searchable locations in EAV
+//Searchable locations in Atlanta
 var atlantaLocations = [{
     "name": "Midtown",
     "lat": 33.786801,
@@ -75,7 +75,7 @@ function loadData(location) {
     });
 };
 
-//Google MapsAPI 
+//Google MapsAPI
 var map;
 //Set TimeOut
 var googleMapsTimeout = setTimeout(function() {
@@ -91,7 +91,7 @@ function initMap() {
 
     map = new google.maps.Map(document.getElementById('map'), {
         center: {
-            lat: 33.749081, 
+            lat: 33.749081,
             lng: -84.394521
         },
         zoom: 12,
@@ -99,15 +99,17 @@ function initMap() {
     });
 
     var isDraggable = $(document).width() > 480 ? true : false;
-    var mapOptions = { 
-        draggable: isDraggable, 
-        scrollwheel: false, 
-        panControl: true 
-    }; 
-    
+    var mapOptions = {
+        draggable: isDraggable,
+        scrollwheel: false,
+        panControl: true
+    };
+
+map.setOptions(mapOptions);
+
     //Run ViewModel
     ko.applyBindings(new LocationViewModel());
-  
+
   //Clear TimeOut
     clearTimeout(googleMapsTimeout);
 }
@@ -154,8 +156,8 @@ var LocationViewModel = function() {
             infowindow.marker = marker;
             infowindow.setContent("<div><b><a target='_blank' href='" + location.url + "'>" + marker.title + "</a></b></div>" + "<div>" + location.extract[0] + "<hr>" + "Information provided by Wikipedia" + "</div>");
             infowindow.open(map, marker);
-            
-        
+
+
     };
 
     self.wikiInfo = function(location) {
